@@ -1,0 +1,13 @@
+name: release-jobs
+on:
+  pull_request:
+    branches:
+    - master
+jobs:
+  test-and-tag-release:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-go@v3
+    - name: Check generated docs
+      run: make check-docs
