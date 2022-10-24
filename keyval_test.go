@@ -56,3 +56,42 @@ func TestStacking(t *testing.T) {
 		return
 	}
 }
+
+func TestGetString(t *testing.T) {
+	source := []byte(`{"hello": 1, "world": {"something": "doggy"}}`)
+	kv, err := NewFromJson(source)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	v, err := kv.String("world", "something")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	if v != "doggy" {
+		t.Errorf("Expected doggy, got %s", v)
+		return
+	}
+}
+
+func SetValue(t *testing.T) {
+	source := []byte(`{"hello": 1, "world": {"something": "doggy"}}`)
+	kv, err := NewFromJson(source)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	err = kv.SetValue(33, "world", "something")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	v, err := kv.Number("world", "something")
+	if v != 33 {
+		t.Errorf("Expected 33, got %v", v)
+		return
+	}
+}

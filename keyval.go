@@ -37,17 +37,30 @@ func NewFromYaml(data []byte) (*KeyVal, error) {
 	}, nil
 }
 
+// SetValue sets a nested value within the object.  If a parent key cannot be located, an error is returned.
 func (kv *KeyVal) SetValue(value any, keys ...string) error {
+	var v any
+	switch t := value.(type) {
+	case int:
+		v = float64(t)
+	case int64:
+		v = float64(t)
+	case int32:
+		v = float64(t)
+	default:
+		v = value
+	}
+
 	switch len(keys) {
 	case 0:
 	case 1:
-		kv.root[keys[0]] = value
+		kv.root[keys[0]] = v
 	default:
 		target, err := walk(kv.root, false, keys[:len(keys)-1]...)
 		if err != nil {
 			return err
 		}
-		target[keys[len(keys)-1]] = value
+		target[keys[len(keys)-1]] = v
 	}
 	return nil
 }

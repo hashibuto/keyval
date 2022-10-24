@@ -46,7 +46,7 @@ func NewFromYaml(data []byte) (*KeyVal, error)
 
 NewFromJson returns a new KeyVal instance from a YAML source
 
-### func \(\*KeyVal\) [Array](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L116>)
+### func \(\*KeyVal\) [Array](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L129>)
 
 ```go
 func (kv *KeyVal) Array(keys ...string) ([]any, error)
@@ -54,7 +54,7 @@ func (kv *KeyVal) Array(keys ...string) ([]any, error)
 
 Array returns an array or an error if the data can't be found, or properly cast
 
-### func \(\*KeyVal\) [Boolean](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L101>)
+### func \(\*KeyVal\) [Boolean](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L114>)
 
 ```go
 func (kv *KeyVal) Boolean(keys ...string) (bool, error)
@@ -62,7 +62,7 @@ func (kv *KeyVal) Boolean(keys ...string) (bool, error)
 
 Boolean returns a boolean or an error if the data can't be found, or properly cast
 
-### func \(\*KeyVal\) [Copy](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L146>)
+### func \(\*KeyVal\) [Copy](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L159>)
 
 ```go
 func (kv *KeyVal) Copy() *KeyVal
@@ -70,7 +70,7 @@ func (kv *KeyVal) Copy() *KeyVal
 
 Copy returns a deep copy of KeyVal
 
-### func \(\*KeyVal\) [Mapping](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L131>)
+### func \(\*KeyVal\) [Mapping](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L144>)
 
 ```go
 func (kv *KeyVal) Mapping(keys ...string) (map[string]any, error)
@@ -78,7 +78,7 @@ func (kv *KeyVal) Mapping(keys ...string) (map[string]any, error)
 
 Mapping returns an array or an error if the data can't be found, or properly cast
 
-### func \(\*KeyVal\) [Number](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L86>)
+### func \(\*KeyVal\) [Number](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L99>)
 
 ```go
 func (kv *KeyVal) Number(keys ...string) (float64, error)
@@ -86,13 +86,15 @@ func (kv *KeyVal) Number(keys ...string) (float64, error)
 
 Number returns a float or an error if the data can't be found, or properly cast
 
-### func \(\*KeyVal\) [SetValue](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L40>)
+### func \(\*KeyVal\) [SetValue](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L41>)
 
 ```go
 func (kv *KeyVal) SetValue(value any, keys ...string) error
 ```
 
-### func \(\*KeyVal\) [Stack](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L153>)
+SetValue sets a nested value within the object.  If a parent key cannot be located, an error is returned.
+
+### func \(\*KeyVal\) [Stack](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L166>)
 
 ```go
 func (kv *KeyVal) Stack(layer *KeyVal) *KeyVal
@@ -100,7 +102,7 @@ func (kv *KeyVal) Stack(layer *KeyVal) *KeyVal
 
 Stack creates a new KeyVal object with the current instance being the base, and layer being stacked atop
 
-### func \(\*KeyVal\) [String](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L71>)
+### func \(\*KeyVal\) [String](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L84>)
 
 ```go
 func (kv *KeyVal) String(keys ...string) (string, error)
@@ -108,7 +110,7 @@ func (kv *KeyVal) String(keys ...string) (string, error)
 
 String returns a string or an error if the data can't be found, or properly cast
 
-### func \(\*KeyVal\) [Value](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L56>)
+### func \(\*KeyVal\) [Value](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L69>)
 
 ```go
 func (kv *KeyVal) Value(keys ...string) (any, error)
