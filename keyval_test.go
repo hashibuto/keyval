@@ -32,7 +32,7 @@ func TestDeepCopy(t *testing.T) {
 
 func TestStacking(t *testing.T) {
 	layerA := []byte(`{"hello": 1, "world": {"something": 2}, "wilbur": "razzle"}`)
-	layerB := []byte(`{"hello": 3, "yellow": 56, "world": {"another": 32}}`)
+	layerB := []byte(`{"hello": 3, "yellow": 56, "world": {"another": 32, "yetanother": 33}}`)
 	kvA, err := NewFromJson(layerA)
 	if err != nil {
 		t.Error(err)
@@ -50,9 +50,10 @@ func TestStacking(t *testing.T) {
 		t.Error(err)
 		return
 	}
+	expected := `{"hello":3,"wilbur":"razzle","world":{"another":32,"something":2,"yetanother":33},"yellow":56}`
 	strData := string(data)
-	if strData != `{"hello":3,"wilbur":"razzle","world":{"another":32,"something":2},"yellow":56}` {
-		t.Error("Got unexpected value")
+	if strData != expected {
+		t.Errorf("Expected:\n%s\nGot:\n%s\n", expected, strData)
 		return
 	}
 }
@@ -92,6 +93,15 @@ func SetValue(t *testing.T) {
 	v, err := kv.Number("world", "something")
 	if v != 33 {
 		t.Errorf("Expected 33, got %v", v)
+		return
+	}
+}
+
+func TestEmptyKeyval(t *testing.T) {
+	var source []byte
+	_, err := NewFromJson(source)
+	if err != nil {
+		t.Error(err)
 		return
 	}
 }
