@@ -13,6 +13,9 @@ type KeyVal struct {
 
 // NewFromJson returns a new KeyVal instance from a JSON source
 func NewFromJson(data []byte) (*KeyVal, error) {
+	if data == nil {
+		data = []byte("{}")
+	}
 	root := map[string]any{}
 	err := json.Unmarshal(data, &root)
 	if err != nil {
@@ -26,6 +29,9 @@ func NewFromJson(data []byte) (*KeyVal, error) {
 
 // NewFromJson returns a new KeyVal instance from a YAML source
 func NewFromYaml(data []byte) (*KeyVal, error) {
+	if data == nil {
+		data = []byte("{}")
+	}
 	root := map[string]any{}
 	err := yaml.Unmarshal(data, &root)
 	if err != nil {
