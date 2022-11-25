@@ -3,6 +3,7 @@ package keyval
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 
 	"gopkg.in/yaml.v3"
 )
@@ -51,6 +52,16 @@ func NewFromMap(data map[string]any) *KeyVal {
 	return &KeyVal{
 		root: data,
 	}
+}
+
+// SplitKey splits a multi-part key string into its separate components.  The default delimiter is "."
+func SplitKey(key string, delim ...string) []string {
+	delimStr := "."
+	if len(delim) > 0 {
+		delimStr = delim[0]
+	}
+
+	return strings.Split(key, delimStr)
 }
 
 // SetValue sets a nested value within the object.  If a parent key cannot be located, an error is returned.

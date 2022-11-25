@@ -105,3 +105,17 @@ func TestEmptyKeyval(t *testing.T) {
 		return
 	}
 }
+
+func TestSplitKey(t *testing.T) {
+	keys := SplitKey("hello.world.now")
+	if len(keys) != 3 {
+		t.Errorf("Expected 3 key components")
+	}
+}
+
+func TestSplitKeySpecialDelim(t *testing.T) {
+	keys := SplitKey("hello:world:now", ":")
+	if len(keys) != 3 {
+		t.Errorf("Expected 3 key components")
+	}
+}
