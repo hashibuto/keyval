@@ -43,6 +43,13 @@ func NewFromYaml(data []byte) (*KeyVal, error) {
 	}, nil
 }
 
+// NewFromMap returns a new KeyVal instance from a map[string]any
+func NewFromMap(data map[string]any) *KeyVal {
+	return &KeyVal{
+		root: data,
+	}
+}
+
 // SetValue sets a nested value within the object.  If a parent key cannot be located, an error is returned.
 func (kv *KeyVal) SetValue(value any, keys ...string) error {
 	var v any
