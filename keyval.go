@@ -45,6 +45,9 @@ func NewFromYaml(data []byte) (*KeyVal, error) {
 
 // NewFromMap returns a new KeyVal instance from a map[string]any
 func NewFromMap(data map[string]any) *KeyVal {
+	if data == nil {
+		data = map[string]any{}
+	}
 	return &KeyVal{
 		root: data,
 	}
