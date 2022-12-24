@@ -12,6 +12,13 @@ type KeyVal struct {
 	root map[string]any
 }
 
+// New returns an empty KeyVal instance
+func New() *KeyVal {
+	return &KeyVal{
+		root: map[string]any{},
+	}
+}
+
 // NewFromJson returns a new KeyVal instance from a JSON source
 func NewFromJson(data []byte) (*KeyVal, error) {
 	if data == nil {
