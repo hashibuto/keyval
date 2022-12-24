@@ -77,7 +77,7 @@ func TestGetString(t *testing.T) {
 	}
 }
 
-func SetValue(t *testing.T) {
+func TestSetValue(t *testing.T) {
 	source := []byte(`{"hello": 1, "world": {"something": "doggy"}}`)
 	kv, err := NewFromJson(source)
 	if err != nil {
@@ -91,6 +91,26 @@ func SetValue(t *testing.T) {
 	}
 
 	v, err := kv.Number("world", "something")
+	if v != 33 {
+		t.Errorf("Expected 33, got %v", v)
+		return
+	}
+}
+
+func TestCreateValue(t *testing.T) {
+	source := []byte(`{"hello": 1, "world": {"something": "doggy"}}`)
+	kv, err := NewFromJson(source)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	err = kv.CreateValue(33, "world", "something", "snoop")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	v, err := kv.Number("world", "something", "snoop")
 	if v != 33 {
 		t.Errorf("Expected 33, got %v", v)
 		return

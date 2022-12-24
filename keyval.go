@@ -92,6 +92,35 @@ func (kv *KeyVal) SetValue(value any, keys ...string) error {
 	return nil
 }
 
+// CreateValue sets a nested value within the object.  If a parent key cannot be located, it is created.
+// Key collisions are ignored.
+func (kv *KeyVal) CreateValue(value any, keys ...string) error {
+	var v any
+	switch t := value.(type) {
+	case int:
+		v = float64(t)
+	case int64:
+		v = float64(t)
+	case int32:
+		v = float64(t)
+	default:
+		v = value
+	}
+
+	switch len(keys) {
+	case 0:
+	case 1:
+		kv.root[keys[0]] = v
+	default:
+		target, err := walk(kv.root, true, keys[:len(keys)-1]...)
+		if err != nil {
+			return err
+		}
+		target[keys[len(keys)-1]] = v
+	}
+	return nil
+}
+
 // Value returns a value or an error if the value cannot be located
 func (kv *KeyVal) Value(keys ...string) (any, error) {
 	var obj any = kv.root
@@ -265,6 +294,16 @@ func walk(obj map[string]any, fill bool, keys ...string) (map[string]any, error)
 			target, ok := t[key]
 			if ok {
 				pos = target
+				switch pos.(type) {
+				case map[string]any:
+				default:
+					if fill {
+						t[key] = map[string]any{}
+						pos = t[key]
+					} else {
+						return nil, fmt.Errorf("Key was not reachable")
+					}
+				}
 			} else {
 				if fill {
 					t[key] = map[string]any{}
