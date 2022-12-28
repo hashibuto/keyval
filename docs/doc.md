@@ -23,6 +23,8 @@ import "github.com/hashibuto/keyval"
   - [func (kv *KeyVal) SetValue(value any, keys ...string) error](<#func-keyval-setvalue>)
   - [func (kv *KeyVal) Stack(layer *KeyVal) *KeyVal](<#func-keyval-stack>)
   - [func (kv *KeyVal) String(keys ...string) (string, error)](<#func-keyval-string>)
+  - [func (kv *KeyVal) ToJson() ([]byte, error)](<#func-keyval-tojson>)
+  - [func (kv *KeyVal) ToYaml() ([]byte, error)](<#func-keyval-toyaml>)
   - [func (kv *KeyVal) Value(keys ...string) (any, error)](<#func-keyval-value>)
 
 
@@ -145,6 +147,22 @@ func (kv *KeyVal) String(keys ...string) (string, error)
 ```
 
 String returns a string or an error if the data can't be found, or properly cast
+
+### func \(\*KeyVal\) [ToJson](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L240>)
+
+```go
+func (kv *KeyVal) ToJson() ([]byte, error)
+```
+
+ToJson marshals the entire data structure to a JSON byte array
+
+### func \(\*KeyVal\) [ToYaml](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L245>)
+
+```go
+func (kv *KeyVal) ToYaml() ([]byte, error)
+```
+
+ToYaml marshals the entire data structure to a YAML byte array
 
 ### func \(\*KeyVal\) [Value](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L132>)
 
