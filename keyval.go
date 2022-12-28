@@ -236,6 +236,16 @@ func (kv *KeyVal) Stack(layer *KeyVal) *KeyVal {
 	}
 }
 
+// ToJson marshals the entire data structure to a JSON byte array
+func (kv *KeyVal) ToJson() ([]byte, error) {
+	return json.Marshal(kv.root)
+}
+
+// ToYaml marshals the entire data structure to a YAML byte array
+func (kv *KeyVal) ToYaml() ([]byte, error) {
+	return yaml.Marshal(kv.root)
+}
+
 // deepCopy returns a deep copy of obj
 func deepCopy(obj any) any {
 	switch t := obj.(type) {
