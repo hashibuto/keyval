@@ -61,6 +61,21 @@ func NewFromMap(data map[string]any) *KeyVal {
 	}
 }
 
+// GetKeyVal returns a new KeyVal object at the nested key position.
+func (kv *KeyVal) GetKeyVal(keys ...string) (*KeyVal, error) {
+	v, err := kv.Value(keys...)
+	if err != nil {
+		return nil, err
+	}
+
+	switch t := v.(type) {
+	case map[string]any:
+		return NewFromMap(t), nil
+	default:
+		return nil, fmt.Errorf("Data at key was not a generic map")
+	}
+}
+
 // SplitKey splits a multi-part key string into its separate components.  The default delimiter is "."
 func SplitKey(key string, delim ...string) []string {
 	delimStr := "."

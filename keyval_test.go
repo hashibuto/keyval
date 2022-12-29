@@ -139,3 +139,29 @@ func TestSplitKeySpecialDelim(t *testing.T) {
 		t.Errorf("Expected 3 key components")
 	}
 }
+
+func TestGetKv(t *testing.T) {
+	data := []byte(`{"users": {"maxine": {"age": 38, "name": "maxine"}, "grigori": {"age": 22, "name": "grigori"}}}`)
+	kv, err := NewFromJson(data)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	mkv, err := kv.GetKeyVal("users", "maxine")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	age, err := mkv.Value("age")
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	if age.(float64) != 38 {
+		t.Error(err)
+		return
+	}
+}
