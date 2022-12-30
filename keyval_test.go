@@ -165,3 +165,14 @@ func TestGetKv(t *testing.T) {
 		return
 	}
 }
+
+func TestGetValueBadKey(t *testing.T) {
+	kv := New()
+	kv.CreateValue("new york city", "city", "ny", "name")
+	kv.CreateValue(32423534, "city", "ny", "size")
+	_, err := kv.Value("city.ny.nam")
+	if err == nil {
+		t.Error(err)
+		return
+	}
+}

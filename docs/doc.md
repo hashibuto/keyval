@@ -77,7 +77,7 @@ func NewFromYaml(data []byte) (*KeyVal, error)
 
 NewFromJson returns a new KeyVal instance from a YAML source
 
-### func \(\*KeyVal\) [Array](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L207>)
+### func \(\*KeyVal\) [Array](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L211>)
 
 ```go
 func (kv *KeyVal) Array(keys ...string) ([]any, error)
@@ -85,7 +85,7 @@ func (kv *KeyVal) Array(keys ...string) ([]any, error)
 
 Array returns an array or an error if the data can't be found, or properly cast
 
-### func \(\*KeyVal\) [Boolean](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L192>)
+### func \(\*KeyVal\) [Boolean](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L196>)
 
 ```go
 func (kv *KeyVal) Boolean(keys ...string) (bool, error)
@@ -93,7 +93,7 @@ func (kv *KeyVal) Boolean(keys ...string) (bool, error)
 
 Boolean returns a boolean or an error if the data can't be found, or properly cast
 
-### func \(\*KeyVal\) [Copy](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L237>)
+### func \(\*KeyVal\) [Copy](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L241>)
 
 ```go
 func (kv *KeyVal) Copy() *KeyVal
@@ -117,7 +117,7 @@ func (kv *KeyVal) GetKeyVal(keys ...string) (*KeyVal, error)
 
 GetKeyVal returns a new KeyVal object at the nested key position.
 
-### func \(\*KeyVal\) [Mapping](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L222>)
+### func \(\*KeyVal\) [Mapping](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L226>)
 
 ```go
 func (kv *KeyVal) Mapping(keys ...string) (map[string]any, error)
@@ -125,7 +125,7 @@ func (kv *KeyVal) Mapping(keys ...string) (map[string]any, error)
 
 Mapping returns an array or an error if the data can't be found, or properly cast
 
-### func \(\*KeyVal\) [Number](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L177>)
+### func \(\*KeyVal\) [Number](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L181>)
 
 ```go
 func (kv *KeyVal) Number(keys ...string) (float64, error)
@@ -141,7 +141,7 @@ func (kv *KeyVal) SetValue(value any, keys ...string) error
 
 SetValue sets a nested value within the object.  If a parent key cannot be located, an error is returned.
 
-### func \(\*KeyVal\) [Stack](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L244>)
+### func \(\*KeyVal\) [Stack](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L248>)
 
 ```go
 func (kv *KeyVal) Stack(layer *KeyVal) *KeyVal
@@ -149,7 +149,7 @@ func (kv *KeyVal) Stack(layer *KeyVal) *KeyVal
 
 Stack creates a new KeyVal object with the current instance being the base, and layer being stacked atop
 
-### func \(\*KeyVal\) [String](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L162>)
+### func \(\*KeyVal\) [String](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L166>)
 
 ```go
 func (kv *KeyVal) String(keys ...string) (string, error)
@@ -157,7 +157,7 @@ func (kv *KeyVal) String(keys ...string) (string, error)
 
 String returns a string or an error if the data can't be found, or properly cast
 
-### func \(\*KeyVal\) [ToJson](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L255>)
+### func \(\*KeyVal\) [ToJson](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L259>)
 
 ```go
 func (kv *KeyVal) ToJson() ([]byte, error)
@@ -165,7 +165,7 @@ func (kv *KeyVal) ToJson() ([]byte, error)
 
 ToJson marshals the entire data structure to a JSON byte array
 
-### func \(\*KeyVal\) [ToYaml](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L260>)
+### func \(\*KeyVal\) [ToYaml](<https://github.com/hashibuto/keyval/blob/master/keyval.go#L264>)
 
 ```go
 func (kv *KeyVal) ToYaml() ([]byte, error)
