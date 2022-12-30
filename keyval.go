@@ -146,10 +146,14 @@ func (kv *KeyVal) CreateValue(value any, keys ...string) error {
 // Value returns a value or an error if the value cannot be located
 func (kv *KeyVal) Value(keys ...string) (any, error) {
 	var obj any = kv.root
+	var ok bool
 	for _, key := range keys {
 		switch t := obj.(type) {
 		case map[string]any:
-			obj = t[key]
+			obj, ok = t[key]
+			if !ok {
+				return nil, fmt.Errorf("Could not resolve value using key")
+			}
 		default:
 			return nil, fmt.Errorf("Encountered a non-mapping data type while traversing data")
 		}
